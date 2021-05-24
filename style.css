@@ -1,0 +1,65 @@
+body {
+  position: relative;
+  min-width: 1000px;
+}
+
+#h1 {
+  position: absolute;
+  font-size: 45px;
+  font-style: inherit;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  margin: 20px ;
+  padding: 12px;
+  color: white;
+  border-style: solid;
+  border-color: rgba(255,0,172,255);
+}
+
+#background {
+  background-image: url(https://i.imgur.com/8tn2xwE.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+#grid {
+  width: 720px;
+  position: absolute;
+  top: 124px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: calc(100% - 124px - 63px)
+}
+
+#grid > .lane {
+  height: 20%;
+  opacity: 0.5;
+  border: 2px solid black;
+}
+
+#grid > .player {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  
+}
+
+#grid > #player1{
+  background-image: url(https://i.imgur.com/jzLdJGI.png);
+}
+
+#grid > #player2{
+  background-image: url(https://i.imgur.com/DbCVrZg.png);
+}
+
+#reset-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%); 
+  color : white ;
+  margin-top: 25px;
+}
