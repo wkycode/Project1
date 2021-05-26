@@ -1,6 +1,10 @@
 body {
   position: relative;
   min-width: 1000px;
+  background-image: url(https://i.imgur.com/8tn2xwE.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
 #h1 {
@@ -15,13 +19,6 @@ body {
   color: white;
   border-style: solid;
   border-color: rgba(255,0,172,255);
-}
-
-#background {
-  background-image: url(https://i.imgur.com/8tn2xwE.jpg);
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
 }
 
 #grid {
@@ -44,14 +41,13 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  
 }
 
-#grid > #player1{
+#grid > #player1 {
   background-image: url(https://i.imgur.com/jzLdJGI.png);
 }
 
-#grid > #player2{
+#grid > #player2 {
   background-image: url(https://i.imgur.com/DbCVrZg.png);
 }
 
@@ -62,4 +58,71 @@ body {
   transform: translateX(-50%); 
   color : white ;
   margin-top: 25px;
+}
+
+.beam.normal {
+  left: 0px;
+  top: 248.11px;
+  height: 80.78px;
+  width: 80.78px;
+  position: absolute;
+}
+
+.beam.reverse {
+  right: 0px;
+  top: 248.11px;
+  height: 80.78px;
+  width: 80.78px;
+  position: absolute;
+}
+
+.beam .start, .beam .main, .beam .end {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+.beam .main {
+  background-image: url(https://i.imgur.com/Xr8Uh3L.png?4);
+  top: 30%;
+  bottom: 20%;
+  right: 0;
+  left: 0;
+  background-repeat: repeat;
+  height: 30px;
+  width: auto ;
+}
+
+.beam.normal .start {
+  background-image: url(https://i.imgur.com/vFGzNAA.png);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+}
+
+.beam.reverse .start {
+  background-image: url(https://i.imgur.com/vFGzNAA.png);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+}
+
+.beam.normal .end {
+  background-image: url(https://i.imgur.com/ZHEdIJy.png);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+}
+
+.beam.reverse .end {
+  background-image: url(https://i.imgur.com/ZHEdIJy.png);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  transform: rotate(180deg);
 }
