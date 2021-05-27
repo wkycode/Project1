@@ -1,6 +1,7 @@
 body {
   position: relative;
   min-width: 1000px;
+  min-height: 720px;
   background-image: url(https://i.imgur.com/8tn2xwE.jpg);
   background-size: cover;
   background-position: center;
@@ -44,11 +45,23 @@ body {
 }
 
 #grid > #player1 {
-  background-image: url(https://i.imgur.com/jzLdJGI.png);
+  background-image: url(https://i.imgur.com/jzLdJGI.png?1);
+}
+
+#grid > #player1.shoot {
+  background-image: url(https://i.imgur.com/RQdMPAM.png);
 }
 
 #grid > #player2 {
-  background-image: url(https://i.imgur.com/DbCVrZg.png);
+  background-image: url(https://i.imgur.com/DbCVrZg.png?1);
+}
+
+#grid > #player2.shoot {
+  background-image: url(https://i.imgur.com/ZDr1Dtk.png);
+}
+
+#grid > #player1.exploding, #grid > #player2.exploding {
+  background-image: url(https://i.imgur.com/eXymTV4.png);
 }
 
 #reset-btn {
@@ -87,8 +100,8 @@ body {
   background-image: url(https://i.imgur.com/Xr8Uh3L.png?4);
   top: 30%;
   bottom: 20%;
-  right: 0;
-  left: 0;
+  right: 40px;
+  left: 40px;
   background-repeat: repeat;
   height: 30px;
   width: auto ;
@@ -125,4 +138,21 @@ body {
   left: 0;
   width: 80px;
   transform: rotate(180deg);
+}
+#game-over-box>h1 {
+  font-family: 'VT323', monospace;
+  font-size: 900%;
+  position: absolute;
+  top: 42.5%;
+  right: 50%;
+  transform: translateX(50%); 
+  z-index: 10;
+  color: black;
+  animation: flash 3s infinite;
+}
+
+@keyframes flash {
+  0% {opacity: 1;}
+  50% {opacity: 0;}
+  100% {opacity: 1;}
 }

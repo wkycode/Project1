@@ -1,6 +1,7 @@
 let GAME_WIDTH, GAME_HEIGHT, CHARACTER_WIDTH, CHARACTER_HEIGHT
 let FPS = 60
 let LOOP_INTERVAL = Math.round(1000 / FPS)
+let $gameOverBox = $('#game-over-box')
 
 let player1 = {
   $elem:  $('#player1'),
@@ -82,7 +83,7 @@ const handleKeyDown = (e) => {
 }
 
 const updateCharacterMovement = (player) => {
-  const { position: { y }, movement: { up, down }, row } = player
+  const { $elem, position: { y }, movement: { up, down }, row } = player
   let newY = y
 
   if (up && row > 1) {
@@ -95,8 +96,11 @@ const updateCharacterMovement = (player) => {
     player.row = row + 1
   }
   
-  player.position.y = newY
-  player.$elem.css('top', newY)
+  if (y !== newY) {
+    $elem.css('top', newY).removeClass('shoot')
+    player.position.y = newY
+  }
+
   player.movement = { ...player.movement, up: false, down: false }
 }
 
@@ -111,27 +115,33 @@ const generateBeam = (beamClass) => {
 }
 
 const spawnBeam = (player) => {
-  const { movement: { shoot }, row, beamDirection, beams } = player
+  const { $elem: $pElem, movement: { shoot }, row, beamDirection, beams } = player
   
   if (shoot && beams[row - 1] === null) {
-    const $elem = $(generateBeam(beamDirection))
-    const power = Math.ceil(Math.random() * 10)
+    const $bElem = $(generateBeam(beamDirection))
+    const power = Math.ceil(Math.random() * (15 - 8) + 8)
     const newBeam = {
-      $elem,
+      $elem: $bElem,
       position: { 
         x: 0, 
         y: (GAME_HEIGHT / 5 * row) - (GAME_HEIGHT / 5 * 0.85)
       },
-      power: Math.ceil(Math.random() * 10),
+      power: Math.ceil(Math.random() * (15 - 8) + 8),
       row
     }
   
-    $elem.css({
+    $bElem.css({
       top: newBeam.position.y,
       height: `${(GAME_HEIGHT / 5) * 0.7}px`,
       width: `${(GAME_HEIGHT / 5) * 0.7}px`
     })
-    $elem.appendTo("#grid")
+    
+    $pElem.addClass('shoot')
+    setTimeout(() => {
+      $pElem.removeClass('shoot')
+    }, 500)
+
+    $bElem.appendTo("#grid")
     player.beams[row - 1] = newBeam
   }
 
@@ -154,21 +164,67 @@ const updateBeamMovement = (player) => {
   })
 }
 
-// detectCollision(player1, player2)
-const detectCollision =() =>{
-  for (let i = 0; i < 5; i++) {
-    if (player1.beams[i] && player2.beams[i]) {
-      const { $elem: $p1Elem, row: p1Row, beams: p1Beams, power: p1Power } = player1.beams[i]
-      const { $elem: $p2Elem, row: p2Row, beams: p2Beams, power: p2Power } = player2.beams[i]
-      console.log($p1Elem.width())
-      let p1Width = Number($p1Elem.width())
-      let p2Width = Number($p2Elem.width())
+const gameOver = () => {
+  clearInterval(gameLoop)
+  gameLoop = null
+  $gameOverBox.show()
+}
 
-      if ( p1Width >= GAME_WIDTH - p2Width && p1Power > p2Power) {
-        player2.beams[i] = null
+const detectCollision =() =>{
+  const { row: p1Row, beams: p1Beams } = player1
+  const { row: p2Row, beams: p2Beams } = player2
+
+  for (let i = 0; i < 5; i++) {
+    if (p1Beams[i] && p2Beams[i]) {
+      const { $elem: $p1BeamElem, power: p1BeamPower } = p1Beams[i]
+      const { $elem: $p2BeamElem, power: p2BeamPower } = p2Beams[i]
+
+      let p1BeamWidth = Number($p1BeamElem.width())
+      let p2BeamWidth = Number($p2BeamElem.width())
+
+      if (p1BeamWidth + p2BeamWidth >= GAME_WIDTH) {
+        if (p1BeamPower > p2BeamPower) {
+          p2Beams[i] = null
+          $p2BeamElem.remove()
+        } else if (p2BeamPower > p1BeamPower) {
+          p1Beams[i]= null
+          $p1BeamElem.remove()
+        } else {
+          p1Beams[i]= null
+          $p1BeamElem.remove()
+          p2Beams[i] = null
+          $p2BeamElem.remove()
+        }
       }
-      if ( p2Width >= GAME_WIDTH - p1Width && p2Power > p1Power){
-        player1.beams[i]= null
+    }
+
+    if (p1Beams[i]) {
+      console.log("Checking")
+      const { $elem: $p1BeamElem } = p1Beams[i]
+      let p1BeamWidth = Number($p1BeamElem.width())
+
+      if (p1BeamWidth > GAME_WIDTH && i === p2Row - 1){
+        console.log("P2 got hit")
+        player2.$elem.addClass('exploding').animate({
+          opacity: 0,
+        }, 1000, () => {
+          player1.$elem.remove()
+        })
+        gameOver()
+      }
+    }
+
+    if (p2Beams[i]) {
+      const { $elem: $p2BeamElem } = p2Beams[i]
+      let p2BeamWidth = Number($p2BeamElem.width())
+
+      if (p2BeamWidth > GAME_WIDTH && i === p1Row - 1){
+        player1.$elem.addClass('exploding').animate({
+          opacity: 0,
+        }, 1000, () => {
+          player1.$elem.remove()
+        })  
+        gameOver()
       }
     }
   }
@@ -194,9 +250,6 @@ const init = () => {
 }
 
 init()
-
-
-
 
 
 
