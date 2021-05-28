@@ -44,6 +44,12 @@ body {
   position: absolute;
 }
 
+@keyframes flashing {
+  0% { opacity: 1 }
+  50% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
 #grid > #player1 {
   background-image: url(https://i.imgur.com/jzLdJGI.png?1);
 }
@@ -62,9 +68,14 @@ body {
 
 #grid > #player1.exploding, #grid > #player2.exploding {
   background-image: url(https://i.imgur.com/eXymTV4.png);
+  animation: flashing 0.2s infinite;
 }
 
-#reset-btn {
+#grid > #player1.invincible, #grid > #player2.invincible {
+  animation: flashing 0.2s infinite;
+}
+
+#restart-btn {
   position: absolute;
   bottom: 15px;
   left: 50%;
@@ -155,4 +166,33 @@ body {
   0% {opacity: 1;}
   50% {opacity: 0;}
   100% {opacity: 1;}
+}
+
+.hearts {
+  position: absolute;
+  top: -30px;
+  display: flex;
+}
+
+.hearts div {
+  background-image: url(https://i.imgur.com/E9ptXfS.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+.hearts div.hidden {
+  display: none;
+}
+
+#p1-health-bar {
+  left: 0;
+  justify-content: flex-start;
+}
+
+#p2-health-bar {
+  right: 0;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
 }
