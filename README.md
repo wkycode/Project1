@@ -8,8 +8,8 @@ Left Player
 - D (Fire Laser)
 
 Right Player
--UpArrowKey (Move Upward) 
--DownArrowKey (Move Downward)
--LeftArrowKey (Fire Laser)
+- UpArrowKey (Move Upward) 
+- DownArrowKey (Move Downward)
+- LeftArrowKey (Fire Laser)
 
 
