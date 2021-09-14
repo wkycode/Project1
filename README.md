@@ -24,13 +24,18 @@ Right Player
 ---
 # Game Screenshots
 
-
+## Standing Still
 ![Image1](https://i.imgur.com/NcXmCdY.png)
 
 ---
 ## Firing Laser
 
 ![Image2](https://i.imgur.com/yKjjRBd.png?1)
+
+---
+## Killing Opponent
+
+![Image2](https://i.imgur.com/S7zRJAz.png?1)
 
 
 
