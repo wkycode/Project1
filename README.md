@@ -23,7 +23,7 @@ Right Player
 
 ---
 
-![Image1](https://imgur.com/NcXmCdY)
+![Image1](https://i.imgur.com/NcXmCdY.png)
 
 
 
