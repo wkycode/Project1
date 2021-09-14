@@ -22,8 +22,16 @@ Right Player
 - Player will have a short period of invincibility after getting shot
 
 ---
+# Game Screenshots
+
 
 ![Image1](https://i.imgur.com/NcXmCdY.png)
+
+---
+## Firing Laser
+
+![Image2](https://i.imgur.com/yKjjRBd.png?1)
+
 
 
 
