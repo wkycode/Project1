@@ -1,6 +1,6 @@
-#Kamehameha Fighters
+##Kamehameha Fighters
 ---
-##Controls
+#Controls
 
 Left Player 
 - W (Move Upward) 
