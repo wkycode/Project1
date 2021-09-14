@@ -35,7 +35,12 @@ Right Player
 ---
 ## Killing Opponent
 
-![Image2](https://i.imgur.com/S7zRJAz.png?1)
+### Blink Effect
+![Image3](https://i.imgur.com/5PqOd3R.png?1)
+![Image4](https://i.imgur.com/S7zRJAz.png?1)
+
+---
+##
 
 
 
