@@ -3,9 +3,9 @@
 Controls
 
 Left Player 
--W (Move Upward) 
--S (Move Downward)
--D (Fire Laser)
+- W (Move Upward) 
+- S (Move Downward)
+- D (Fire Laser)
 
 Right Player
 -UpArrowKey (Move Upward) 
